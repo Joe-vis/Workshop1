@@ -1,6 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://daky54gqgq3mw"]
+[gd_scene load_steps=3 format=3 uid="uid://daky54gqgq3mw"]
 
 [ext_resource type="Script" uid="uid://bwyc1x0g54crs" path="res://Camera.cs" id="1_e6e23"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e6e23"]
+size = Vector2(1150, 90)
+
 [node name="Camera" type="Camera2D"]
 script = ExtResource("1_e6e23")
+
+[node name="Deathbox" type="Area2D" parent="."]
+position = Vector2(1, 134)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deathbox"]
+position = Vector2(1, 370)
+shape = SubResource("RectangleShape2D_e6e23")
+debug_color = Color(0.990626, 0, 0.275987, 0.42)
