@@ -3,7 +3,7 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
-	private float _speed = 600;
+	private float _speed = 300;
 	private Vector2 _movementVector = Vector2.Zero;
 	public const float JumpVelocity = -700.0f;
 	public const int maxJumps = 2;
