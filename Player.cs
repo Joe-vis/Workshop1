@@ -5,8 +5,9 @@ public partial class Player : CharacterBody2D
 {
     private float _speed = 600;
     private Vector2 _movementVector = Vector2.Zero;
-    public const float JumpVelocity = -600.0f;
-
+    public const float JumpVelocity = -700.0f;
+    public const int maxJumps = 2;
+    private int jumpCount = 2;
 
     public override void _Process(double delta)
     {
@@ -24,25 +25,36 @@ public partial class Player : CharacterBody2D
         }
 
         // Handle Jump.
-        if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
+        if (Input.IsActionJustPressed("ui_accept") && jumpCount > 0)
         {
             velocity.Y = JumpVelocity;
+            velocity.X = _movementVector.X * _speed;
+            jumpCount--;
         }
 
-        // Get the input direction and handle the movement/deceleration.
-        // As good practice, you should replace UI actions with custom gameplay actions.
-        // if (IsOnFloor())
-
-        if (_movementVector != Vector2.Zero)
+        if (IsOnFloor())
         {
-            velocity.X = _movementVector.X * _speed;
+            if (_movementVector != Vector2.Zero)
+            {
+                velocity.X = _movementVector.X * _speed;
+            }
+            else
+            {
+                velocity.X = Mathf.MoveToward(Velocity.X, 0, _speed);
+            }
         }
         else
         {
-            velocity.X = Mathf.MoveToward(Velocity.X, 0, _speed);
+            if (_movementVector != Vector2.Zero)
+            {
+                velocity.X += _movementVector.X * _speed * 0.05f;
+            }
         }
 
         Velocity = velocity;
+
+        if (IsOnFloor())
+            jumpCount = maxJumps;
         MoveAndSlide();
     }
 
