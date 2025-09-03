@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://cyndk6qowcotq"]
+
+[ext_resource type="Texture2D" uid="uid://dvy8pebb5rnqv" path="res://icon.svg" id="1_eck17"]
+[ext_resource type="PackedScene" uid="uid://daky54gqgq3mw" path="res://Camera.tscn" id="2_tpe81"]
+[ext_resource type="PackedScene" uid="uid://8nrxvf6vo57l" path="res://player.tscn" id="3_oquh4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oquh4"]
+size = Vector2(43.6605, 121.109)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Icon6" type="StaticBody2D" parent="."]
+position = Vector2(173, 40.9999)
+scale = Vector2(40.0362, 0.726619)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Icon6"]
+position = Vector2(-4.24615, -60.5544)
+shape = SubResource("RectangleShape2D_oquh4")
+
+[node name="Icon5" type="Sprite2D" parent="."]
+position = Vector2(189, -586)
+scale = Vector2(6.32742, 0.852419)
+texture = ExtResource("1_eck17")
+
+[node name="Icon4" type="Sprite2D" parent="."]
+position = Vector2(-142, -330)
+scale = Vector2(2.7691, 0.208878)
+texture = ExtResource("1_eck17")
+
+[node name="Icon3" type="Sprite2D" parent="."]
+position = Vector2(-523, -457)
+scale = Vector2(1.10061, 0.854555)
+texture = ExtResource("1_eck17")
+
+[node name="Icon" type="Sprite2D" parent="."]
+modulate = Color(0.647622, 0.358846, 0.100924, 1)
+self_modulate = Color(0.647059, 0.360784, 0.101961, 1)
+z_index = -1
+position = Vector2(3, -518)
+scale = Vector2(14.3984, 8.01563)
+texture = ExtResource("1_eck17")
+
+[node name="Icon2" type="Sprite2D" parent="."]
+position = Vector2(-514, -220)
+scale = Vector2(1.66406, 0.457031)
+texture = ExtResource("1_eck17")
+
+[node name="Node2D" parent="." instance=ExtResource("2_tpe81")]
+position = Vector2(-49, -163)
+
+[node name="Node2D2" parent="." instance=ExtResource("3_oquh4")]
+position = Vector2(77, -129)
