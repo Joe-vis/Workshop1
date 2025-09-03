@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cyndk6qowcotq"]
+[gd_scene load_steps=5 format=3 uid="uid://bokohc85i5tgd"]
 
 [ext_resource type="Texture2D" uid="uid://dvy8pebb5rnqv" path="res://icon.svg" id="1_eck17"]
-[ext_resource type="PackedScene" uid="uid://daky54gqgq3mw" path="res://Camera.tscn" id="2_tpe81"]
+[ext_resource type="PackedScene" path="res://Camera.tscn" id="2_tpe81"]
 [ext_resource type="PackedScene" uid="uid://8nrxvf6vo57l" path="res://player.tscn" id="3_oquh4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oquh4"]
@@ -47,6 +47,7 @@ texture = ExtResource("1_eck17")
 
 [node name="Node2D" parent="." instance=ExtResource("2_tpe81")]
 position = Vector2(-49, -163)
+Speed = 80.0
 
 [node name="Node2D2" parent="." instance=ExtResource("3_oquh4")]
 position = Vector2(77, -129)
