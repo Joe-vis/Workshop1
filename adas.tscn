@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bokohc85i5tgd"]
 
 [ext_resource type="Texture2D" uid="uid://dvy8pebb5rnqv" path="res://icon.svg" id="1_eck17"]
-[ext_resource type="PackedScene" path="res://Camera.tscn" id="2_tpe81"]
+[ext_resource type="PackedScene" uid="uid://daky54gqgq3mw" path="res://Camera.tscn" id="2_tpe81"]
 [ext_resource type="PackedScene" uid="uid://8nrxvf6vo57l" path="res://player.tscn" id="3_oquh4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oquh4"]
@@ -33,8 +33,7 @@ scale = Vector2(1.10061, 0.854555)
 texture = ExtResource("1_eck17")
 
 [node name="Icon" type="Sprite2D" parent="."]
-modulate = Color(0.647622, 0.358846, 0.100924, 1)
-self_modulate = Color(0.647059, 0.360784, 0.101961, 1)
+self_modulate = Color(0.389382, 0.0015217, 0.898732, 1)
 z_index = -1
 position = Vector2(3, -518)
 scale = Vector2(14.3984, 8.01563)

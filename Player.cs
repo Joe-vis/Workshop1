@@ -3,62 +3,84 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
-    private float _speed = 600;
-    private Vector2 _movementVector = Vector2.Zero;
-    public const float JumpVelocity = -700.0f;
-    public const int maxJumps = 2;
-    private int jumpCount = 2;
+	private float _speed = 600;
+	private Vector2 _movementVector = Vector2.Zero;
+	public const float JumpVelocity = -700.0f;
+	public const int maxJumps = 2;
+	private int jumpCount = 2;
+	private AnimatedSprite2D _sprite;
 
-    public override void _Process(double delta)
-    {
-        base._Process(delta);
-        _movementVector = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
-    }
-    public override void _PhysicsProcess(double delta)
-    {
-        Vector2 velocity = Velocity;
+	public override void _Ready()
+	{
+		_sprite = GetNode<AnimatedSprite2D>("Icon");
+		_sprite.Play("Idle");
+	}
 
-        // Add the gravity.
-        if (!IsOnFloor())
-        {
-            velocity += GetGravity() * 2 * (float)delta;
-        }
+	public override void _Process(double delta)
+	{
+		base._Process(delta);
+		_movementVector = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
+	}
+	public override void _PhysicsProcess(double delta)
+	{
+		Vector2 velocity = Velocity;
 
-        // Handle Jump.
-        if (Input.IsActionJustPressed("ui_accept") && jumpCount > 0)
-        {
-            velocity.Y = JumpVelocity;
-            velocity.X = _movementVector.X * _speed;
-            jumpCount--;
-        }
+		// Add the gravity.
+		if (!IsOnFloor())
+		{
+			velocity += GetGravity() * 2 * (float)delta;
+		}
 
-        if (IsOnFloor())
-        {
-            if (_movementVector != Vector2.Zero)
-            {
-                velocity.X = _movementVector.X * _speed;
-            }
-            else
-            {
-                velocity.X = Mathf.MoveToward(Velocity.X, 0, _speed);
-            }
-        }
-        else
-        {
-            if (_movementVector != Vector2.Zero)
-            {
-                velocity.X += _movementVector.X * _speed * 0.05f;
-            }
-        }
+		if (_movementVector.Length() > 0)
+		{
+			_sprite.Play("Walk");
+		}
+		else
+		{
+			_sprite.Play("Idle");
+		}
 
-        Velocity = velocity;
+		if (Mathf.Abs(_movementVector.X) > 0.1f)
+		{
+			_sprite.FlipH = _movementVector.X < 0;
+		}
 
-        if (IsOnFloor())
-            jumpCount = maxJumps;
-        MoveAndSlide();
-    }
+		// Handle Jump.
+		if (Input.IsActionJustPressed("ui_accept") && jumpCount > 0)
+		{
+			_sprite.Play("Jump");
+			velocity.Y = JumpVelocity;
+			velocity.X = _movementVector.X * _speed;
+			jumpCount--;
+		}
 
-    private void Jump()
-    {
-    }
+		if (IsOnFloor())
+		{
+			if (_movementVector != Vector2.Zero)
+			{
+				velocity.X = _movementVector.X * _speed;
+			}
+			else
+			{
+				velocity.X = Mathf.MoveToward(Velocity.X, 0, _speed);
+			}
+		}
+		else
+		{
+			if (_movementVector != Vector2.Zero)
+			{
+				velocity.X += _movementVector.X * _speed * 0.05f;
+			}
+		}
+
+		Velocity = velocity;
+
+		if (IsOnFloor())
+			jumpCount = maxJumps;
+		MoveAndSlide();
+	}
+
+	private void Jump()
+	{
+	}
 }
