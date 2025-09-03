@@ -23,7 +23,7 @@ public partial class Camera : Camera2D
 		if (body is Player player)
 		{
 			GD.Print("👽👽👽");
-			player.QueueFree();
+			GetTree().ChangeSceneToFile("res://havisitpelin.tscn");
 			Speed = 0f;
 		}
 	}
